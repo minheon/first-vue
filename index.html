@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue 연습</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+
+</head>
+<style>
+    #app{
+        line-height: 5;
+    }
+</style>
+<body>
+
+
+
+    <div id="app">
+        {{ nextYear('안녕하세요') }}    <br />
+        <input v-bind:type="type" v-bind:value="inputData"> <br />
+        <!--  데이터바인딩
+            Data 값을 태그의 속성과 연결 시키고 싶을때 사용
+            v-bind 축약형으로  : 컬럼만넣어도 작동
+        -->
+        <a :href="getsoro('.co.kr/')">서로커뮤니케이션</a>  <br />
+
+        <!-- 이벤트생성 -->
+        이벤트생성
+        {{ year }}
+        <button @click="plus">plus</button>
+        <button @click="minus">minus</button>
+        <form v-on:submit.prevent="alert"> <!--폼태그를 사용하면 버튼클릭시 리로드 되지만 .prevent 를같이쓰면 리로드가 되지않음 -->
+            <button type="submit">Click Me</button>
+        </form><br />
+    </div>
+
+
+
+    <!-- 양방향 바인딩 v-model 을 쓰면 데이터가 연동된다 -->
+    <div id="app2">
+        양방향바인딩
+        <form v-on:submit.prevent="alert">
+            <!-- <input type="text" :value="text" @keyup="updateText"><br /> -->
+            <input type="text" v-model="text"><br />
+            {{ text }}<br />
+            <button type="submit">Click</button>
+        </form>
+    </div><br />
+
+
+    <!-- computed 속성 -->
+    <div id="app3">
+        <button @click="changeMessage">Click</button>
+        {{ reversedMessage }}
+        {{ reversedMessage }}
+        {{ reversedMessage }}
+    </div>
+
+<script>
+    new Vue ({
+        el:"#app",
+        data: {
+            hello:  {
+                name: "김민헌",
+                age: 28
+            },
+            inputData: "Hello",
+            type: "text",
+            link: "https://soroweb",
+            year: 0
+            },
+        methods:{
+            getsoro(site){
+                return this.link + site;
+            },
+            nextYear(greeting){       //function을 지워도 정상작동  nextYear: function(greeting)
+                return greeting + ' ! ' + this.hello.name + '은 내년에 ' + (this.hello.age + 1) + '살 입니다.'
+            },
+            alert(){
+                alert('HI im minheon kim')
+            },
+            plus(){
+                this.year++;
+            },
+            minus(){
+                this.year--;
+            },
+        }
+    })
+
+
+    new Vue({
+        el:"#app2",
+        data:{
+            text: 'textttt'
+        },
+        methods:{
+            // updateText(event){
+            //     this.text=event.target.value;
+            // }
+        }
+    })
+
+
+    new Vue({   //캐싱의 경우 처음한번만계산한값을 가지고있는것 메소드의경우 생성될때 반환이 되지않고 매번계산 
+        el: "#app3",
+        data:{
+            message: '안녕하세요'
+        },
+        methods:{
+            // 메소드에 reversedMessage 를 쓰고싶을경우 {{reversedMessage}} 에 ()를 추가 하면된다
+            changeMessage(){
+                this.message = '요세가히녕안';
+            }
+
+        },
+        computed:{
+            reversedMessage(){ 
+                //split부터 join 까지는 자바스크립트
+                // split 는 message 의 글자 하나하나 가 나눠져서 어레이에 담겨짐
+                // reverse 는 글자를 거꾸로 바꿈
+                // join 은 어레이가 합쳐져서 스트링으로 맞춰짐
+                return this.message.split('').reverse().join('')
+            }
+        }
+    })
+</script>
+</body>
+</html>
