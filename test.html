@@ -1,0 +1,90 @@
+<head>
+  <meta charset="utf-8">
+  <title>hello vue.js</title>
+  <style>
+      #list {
+          width: 500px;
+          border-collapse: collapse;
+      }
+      
+      #list td,
+      #list th {
+          border: 1px solid black;
+          text-align: center;
+      }
+  </style>
+  <script src="https://unpkg.com/vue@2.6.12/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="exmaple">
+      <table id="list">
+          <thead>
+              <tr>
+                  <th>번호</th>
+                  <th>이름</th>
+                  <th>전화번호</th>
+                  <th>주소</th>
+              </tr>
+          </thead>
+          <tbody id="contacts">
+              <tr v-for="(contact, index) in contacts">
+                  <td>{{index+1}}</td>
+                  <td>{{contact.name}}</td>
+                  <td>{{contact.tel}}</td>
+                  <td>{{contact.address}}</td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+  <script type="text/javascript">
+      var model = {
+          "contacts": [{
+              "name": "철수",
+              "tel": "010-1234-0001",
+              "address": "서울"
+          }, {
+              "name": "영희",
+              "tel": "010-1234-0002",
+              "address": "서울"
+          }, {
+              "name": "안나",
+              "tel": "010-1234-0003",
+              "address": "경기"
+          }, {
+              "name": "대길",
+              "tel": "010-1234-0004",
+              "address": "제주"
+          }, {
+              "name": "수균",
+              "tel": "010-1234-0005",
+              "address": "전북"
+          }, {
+              "name": "재연",
+              "tel": "010-1234-0006",
+              "address": "강원"
+          }, {
+              "name": "연아",
+              "tel": "010-1234-0007",
+              "address": "경기"
+          }, {
+              "name": "고국",
+              "tel": "010-1234-0008",
+              "address": "서울"
+          }, {
+              "name": "홍주",
+              "tel": "010-1234-0009",
+              "address": "충남"
+          }, {
+              "name": "기범",
+              "tel": "010-1234-0010",
+              "address": "서울"
+          }]
+      }
+
+      var list = new Vue({
+          el: "#exmaple",
+          data: model
+      });
+  </script>
+</body>

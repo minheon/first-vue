@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue 연습</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+
+</head>
+<style>
+    #list {
+        width: 500px;
+        border-collapse: collapse;
+    }
+    
+    #list td,
+    #list th {
+        border: 1px solid black;
+        text-align: center;
+    }
+</style>
+<body>
+
+
+
+    <div id="app">
+        <table id="list">
+            <thead>
+                <tr>
+                    <th>이름</th>
+                    <th>나이</th>
+                    <th>전공</th>
+                    <th>학점</th>
+                    <th>재수강여부</th>
+                    <th>장학금여부</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr :key='i' v-for="(contact, i) in contactList">
+                    <td>{{contact.name}}</td>
+                    <td>{{contact.age}}</td>
+                    <td>{{contact.major}}</td>
+                    <td>{{contact.GPA}}</td>
+                    <td>{{contact.Courseretake}}</td>
+                    <td>{{contact.scholarship}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <script>
+    new Vue({
+        el: "#app",
+        data:  {
+            contactList: [
+                {name: "홍길동",age: 23,major: "시각디자인",GPA:"A",Courseretake:'-',scholarship:'-'},
+                {name: "임꺽정",age: 31,major: "시각디자인",GPA:"F",Courseretake:'재수강',scholarship:'-'},
+                {name: "심춘향",age: 21,major: "시각디자인",GPA:"B",Courseretake:'-',scholarship:'-'},
+                {name: "흥부",age: 23,major: "공간디자인",GPA:"A+",Courseretake:'-',scholarship:'장학금 대상'},
+                {name: "놀부",age: 27,major: "컴퓨터공학",GPA:"C",Courseretake:'-',scholarship:'-'},
+                {name: "콩쥐",age: 23,major: "산업디자인",GPA:"D",Courseretake:'-',scholarship:'-'},
+            ],
+        }
+    })
+</script>
+</body>
+</html>
