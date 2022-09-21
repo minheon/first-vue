@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>vue 연습</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+</head>
+<style>
+        .red{
+                color: red;
+        }
+        .bold{
+                font-weight: bold;
+        }
+</style>
+<body>
+        <div id="app">
+                <!--   만약클래스명에 -작대기나 _언더바 가 존재할경우 밑에 클래스를 'red': isRed 나 'bold': isBold 로 바꿔주면된다-->
+                <!-- 예시 ) .font_bold   ->     'font_bold': isBold        -->
+                <div :class="{ red: isRed, bold: isBold }">Hello</div>
+                <button @click="update">Click</button>
+        </div>
+        <script>
+                new Vue({
+                        el: '#app',
+                        data: {
+                                isRed: false,
+                                isBold: false
+                        },
+                        methods:{
+                                update(){
+                                        this.isRed = !this.isRed;
+                                        this.isBold = !this.isBold;
+                                }
+                        },
+                })
+        </script>
+</body>
+</html>

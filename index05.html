@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>vue 연습</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+</head>
+<style>
+        .red{
+                color: red;
+        }
+        .bold{
+                font-weight: bold;
+        }
+</style>
+<body>
+        <div id="app">
+                <!-- 스타일바인딩       font-size 는 fontSize로 써야 적용된다 -->
+                <div :style="{color: red, fontSize: size }">Hello</div>
+                <button @click="update">Click</button>
+        </div>
+        <script>
+                new Vue({
+                        el: '#app',
+                        data: {
+                                red: 'red',
+                                size: '30px'
+                        },
+                        methods:{
+                                update(){
+                                        this.isRed = !this.isRed;
+                                        this.isBold = !this.isBold;
+                                }
+                        },
+                })
+        </script>
+</body>
+</html>
