@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue 연습</title>
+  <script src="https://unpkg.com/vue@next"></script>
+
+</head>
+<style>
+table {
+  border: 1px solid #000;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #000;
+  padding: 4px 8px;
+  text-align: left;
+}
+</style>
+<body>
+
+<!-- https://opentutorials.org/course/50/100 해당사이트 참고 -->
+
+  <div id="app">
+    <table>
+      <thead>
+        <tr>
+          <th>이름</th>
+          <th>나이</th>
+          <th>전공</th>
+          <th>학점</th>
+          <th>재수강 여부</th>
+          <th>장학금 여부</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in items" :key="item.idx">
+          <td>{{ item.name }}</td>
+          <td>{{ item.age }}</td>
+          <td>{{ item.major }}</td>
+          <td>{{ item.GPA }}</td>
+          <td>{{ isRetake(item.GPA) ? "재수강" : "-" }}</td>
+          <td>{{ isScholarship(item.GPA) ? "장학금 대상" : "-" }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+    <script>
+const VueApp = {
+  data() {
+    return {
+      items: [
+        {
+          idx: 0,
+          name: '홍길동',
+          age: 23,
+          major: '시각디자인',
+          GPA: 'A'
+        },{
+          idx: 1,
+          name: '임꺽정',
+          age: 31,
+          major: '시각디자인',
+          GPA: 'F'
+        },{
+          idx: 2,
+          name: '심춘향',
+          age: 21,
+          major: '시각디자인',
+          GPA: 'B'
+        },{
+          idx: 3,
+          name: '흥부',
+          age: 23,
+          major: '공간디자인',
+          GPA: 'A+'
+        },{
+          idx: 4,
+          name: '놀부',
+          age: 27,
+          major: '컴퓨터공학',
+          GPA: 'C'
+        },{
+          idx: 5,
+          name: '콩쥐',
+          age: 23,
+          major: '산업디자인',
+          GPA: 'D'
+        },
+      ]
+    }
+  },
+  methods: {
+    isRetake(gpa) {
+      return gpa.toUpperCase() === "F";
+    },
+    isScholarship(gpa) {
+      return gpa.toUpperCase() === "A+";
+    }
+  }
+}
+
+Vue.createApp(VueApp).mount('#app')
+</script>
+</body>
+</html>
