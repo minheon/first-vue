@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>뷰 컴포넌트</title>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <!-- {{ name }}  <br>
+        <button @click="changeText">Click</button>
+
+        <hr> -->
+
+        <minheon-button></minheon-button>
+    </div>
+    <hr><hr>
+    <div id="app-1">
+        <!-- {{ name }}  <br>
+        <button @click="changeText">Click</button>
+
+        <hr> -->
+
+        <minheon-button></minheon-button> 
+    </div>
+    <script>
+        // Vue.component('hello-world',{
+        //     template: '<div>hello world</div>'
+        // })
+        // Vue.component('minheon-button',{
+        //     template: `
+        //     <div>
+        //         {{ name }}  <br>
+        //         <hello-world></hello-world>
+        //         <button @click="changeText">Click</button>
+        //     </div>
+        //         `
+        //         ,
+        //     data() {
+        //         return{
+        //             name:   'minheon'
+        //         }
+        //     },
+        //     methods:{
+        //         changeText() {
+        //             this.name = 'minheon updated';
+        //         }
+        //     },
+        // });
+
+        const HelloWorld = {
+            template: '<div>hello world</div>'
+        };
+
+        const minButton = {
+            components:{
+                'hello-world' :  HelloWorld
+            },
+            template: `
+            <div>
+                {{ name }}  <br>
+                <hello-world></hello-world>
+                <button @click="changeText">Click</button>
+            </div>
+                `
+                ,
+            data() {
+                return{
+                    name:   'minheon'
+                }
+            },
+            methods:{
+                changeText() {
+                    this.name = 'minheon updated';
+                }
+            },
+        };
+
+        const app = new Vue({
+            el: '#app',
+            components: {
+                'minheon-button' : minButton
+            }
+            // data: {
+            //     name:   'minheon'
+            // },
+            // methods:{
+            //     changeText() {
+            //         this.name = 'minheon updated';
+            //     }
+            // },
+        })
+
+        const app1 = new Vue({
+            el: '#app-1',
+            components: {
+                'minheon-button' : minButton
+            }
+            // data: {
+            //     name:   'minheon'
+            // },
+            // methods:{
+            //     changeText() {
+            //         this.name = 'minheon updated';
+            //     }
+            // },
+        })
+    </script>
+</body>
+</html>
